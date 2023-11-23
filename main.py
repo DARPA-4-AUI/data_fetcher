@@ -107,23 +107,23 @@ def get_screen_data(file_name: str, path: str):
     order = 'adb shell screencap -p  > {}.png'.format(os.path.join(path, file_name))
     subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
 
-    # 获取xml
-    order = 'adb shell uiautomator dump /sdcard/{}.xml'.format(file_name)
-    subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
-    print(order)
-    while True:
-        order = 'adb shell ls /sdcard/{}.xml'.format(file_name)
-        pi = subprocess.Popen(order, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        data = str(pi.stdout.read())
-        if data.find('/sdcard/{}.xml'.format(file_name)) != -1:
-            pi.stdout.close()
-            pi.stderr.close()
-            break
-
-    order = 'adb pull /sdcard/{}.xml {}'.format(file_name, path)
-    subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
-    order = 'adb shell rm /sdcard/{}.xml'.format(file_name)
-    subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
+    # # 获取xml
+    # order = 'adb shell uiautomator dump /sdcard/{}.xml'.format(file_name)
+    # subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
+    # print(order)
+    # while True:
+    #     order = 'adb shell ls /sdcard/{}.xml'.format(file_name)
+    #     pi = subprocess.Popen(order, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #     data = str(pi.stdout.read())
+    #     if data.find('/sdcard/{}.xml'.format(file_name)) != -1:
+    #         pi.stdout.close()
+    #         pi.stderr.close()
+    #         break
+    #
+    # order = 'adb pull /sdcard/{}.xml {}'.format(file_name, path)
+    # subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
+    # order = 'adb shell rm /sdcard/{}.xml'.format(file_name)
+    # subprocess.Popen(order, shell=True, stdout=subprocess.PIPE)
 
 
 '''
